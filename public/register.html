@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css"/>
+  <script src="js/jquery.min.js" ></script>
+</head>
+<body>
+  <div class="login">
+    <h>Register</h>
+      <div class="input">
+        <span>Username</span> <input type="text" name="username" id="username">
+      </div>
+      <div class="input">
+        <span>Password</span> <input type="password" name="password" id="password">
+      </div>
+      <div class="btn">
+        <div><button id='reg' onclick="reg()">Register</button></div>
+        <div><button id='login' onclick="login()">Login</button></div>
+      </div>
+  </div>
+</body>
+<script type="text/javascript">
+  function reg(){
+    let username = $("#username").val()
+    let password = $("#password").val()
+    $.ajax({
+      url: "http://localhost/user/reg",
+      data:{
+        username: username,
+        password: password
+      },
+      dataType:"JSON",
+      type: "POST",
+      success: function (res) {
+        if (res.state == 1) {
+          alert(res.msg)
+        }else {
+          alert(res.msg)
+          location.href = "login.html"
+        }
+      }
+    })
+  }
+
+  function login() {
+    location.href = 'login.html'
+  }
+</script>
+</html>
