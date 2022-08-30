@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("img/cover.jpg");
+            background-size: cover;
+        }
+        .login {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 550px;
+            height: 350px;
+            border-top: 1px solid rgba(30,30,30,0.5);
+            border-bottom: 1px solid rgba(30,30,30,0.5);
+            border-left: 1px solid rgba(30,30,30,0.5);
+            border-right: 1px solid rgba(30,30,30,0.5);
+            backdrop-filter: blur(5px);
+            background: rgba(60,60,50,0.3);
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+        .login > h {
+            color: snow;
+            margin: 10px;
+            font-size: 30px;
+        }
+        .input > span {
+            margin: 5px;
+            color: white;
+            font-size: 15px;
+        }
+        .input > input {
+            margin: 5px;
+            font-size: 15px;
+            height: 30px;
+            width: 280px;
+            background: lightgray;
+            border: 1px solid antiquewhite;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .btn > div > button {
+            width: 100px;
+            height: 30px;
+            margin: 20px;
+            border: 1px solid gray;
+            background: darkgray;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+  <div class="login">
+    <h>Register</h>
+      <form action="/reg" method="post">
+          <div class="input">
+            <span>Username</span> <input type="text" name="username" id="username" required>
+          </div>
+          <div class="input">
+            <span>Password</span> <input type="password" name="password" id="password" required>
+          </div>
+          <div class="btn">
+            <div><button type="submit" id='reg' >Register</button></div>
+              <div><button id='login'> <a href="/login">Login</a></button></div>
+          </div>
+      </form>
+  </div>
+</body>
+</html>
