@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EBPC Document Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <link rel="stylesheet" href="style2.css"/>
+  <script src="js/jquery.min.js" ></script>
+</head>
+<body>
+<div class="container-fluid">
+  <h1>File Management System</h1>
+  <div class="container-fluid">
+    <p><i>Welcome <b>User</b></i></p>
+    <div class="btn-group ">
+      <button type="button" class="btn btn-primary" onclick= "window.location.href= 'index.html'">Home</button>
+      <button type="button" class="btn btn-primary">Logout</button>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container-fluid">
+  <button type="button" class="btn btn-primary disabled">Upload File</button>
+  <button type="button" class="btn btn-primary disabled">Create File</button>
+
+
+</div>
+<hr>
+<div class="container-fluid">
+  <button type="button" class="btn btn-primary" onclick="window.location.href= 'index.html'">
+    <img class="img-responsive" src="./img/back_arrow.png" alt="Back" ></button>
+
+  <center>
+  <form>
+
+    <label for="folder_name">Enter Folder Name Here:</label><br>
+    <input type="text" id="folder_name" name="folder_name" maxlength= "250" size= "50"><br><br>
+    <label for="folder_description">Please Enter a Folder Description Here:</label><br>
+    <input type="text" id="folder_description" name="folder_description" maxlength="180" size= "50"><br>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick= ""> Create Folder </button>
+
+  </form>
+  </center>
+</div>
+</body>
+</html>
