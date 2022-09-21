@@ -8,6 +8,7 @@
     <script src="js/jquery.min.js" ></script>
     <script type="text/javascript">
         function logout(){location.href='/login'}
+        function createFolder(){location.href='/create_folder'}
     </script>
 </head>
 <body>
@@ -17,7 +18,7 @@
             <p><i>Welcome <b><%= username%></b></i></p>
             <div class="btn-group ">
                 <button type="button" class="btn btn-primary">Home</button>
-                <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+                <button type="button" class="btn btn-primary" onclick= "logout()" >Logout</button>
             </div>
         </div>
     </div>
@@ -25,7 +26,7 @@
     <div class="container-fluid">
         <button type="button" class="btn btn-primary disabled">Upload File</button>
         <button type="button" class="btn btn-primary disabled">Create File</button>
-        <button type="button" class="btn btn-primary" onclick= "window.location.href = 'create_folder.html'">Create Folder</button>
+        <button type="button" class="btn btn-primary" onclick= "createFolder()" >Create Folder</button>
     </div>
     <hr>
     <div class="container-fluid">

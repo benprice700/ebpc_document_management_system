@@ -7,28 +7,18 @@
   <link rel="stylesheet" href="style2.css"/>
   <script src="js/jquery.min.js" ></script>
   <script type="text/javascript">
-  function myfunction(){
-    const fs = require ('fs');
-    const path = require('path');
-    fs.mkdir(path.join(__dirname, 'test'),
-      { recursive: true }, (err) => {
-        if (err) {
-          return console.error(err);
-        }
-        console.log('Directory created successfully!');
-      });
-
-  }
+  function home(){location.href='/'}
+  function logout(){location.href='/login'}
   </script>
 </head>
 <body>
 <div class="container-fluid">
   <h1>File Management System</h1>
   <div class="container-fluid">
-    <p><i>Welcome <b>User</b></i></p>
+    <p><i>Welcome <b><%= username%></b></i></p>
     <div class="btn-group ">
-      <button type="button" class="btn btn-primary" onclick= "window.location.href= 'home.ejs'"> Home </button>
-      <button type="button" class="btn btn-primary">Logout</button>
+      <button type="button" class="btn btn-primary" onclick= home() > Home </button>
+      <button type="button" class="btn btn-primary" onclick = "logout()" >Logout</button>
     </div>
   </div>
 </div>
@@ -41,7 +31,7 @@
 </div>
 <hr>
 <div class="container-fluid">
-  <button type="button" class="btn btn-primary" onclick="window.location.href= 'home.html'">
+  <button type="button" class="btn btn-primary" onclick=home()>
     <img class="img-responsive" src="./img/back_arrow.png" alt="Back" ></button>
 
   <center>
@@ -53,7 +43,8 @@
     <input type="text" id="folder_description" name="folder_description" maxlength="180" size= "50"><br>
     <br>
     <br>
-    <button type="button" class="btn btn-primary" onclick= "myfunction()"> Create Folder </button>
+    <button type="button" class="btn btn-primary" onclick= myFunction() > Create Folder </button>
+    <script src="makeFolder.js"></script>
 
   </form>
   </center>

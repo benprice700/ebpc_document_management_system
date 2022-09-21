@@ -66,6 +66,11 @@ app.get('/',checkSession, (req, res) => {
     //res.render('./home.html', {username: req.user.username})
     res.render('home.ejs', {username: req.user.username})
 })
+app.get('/create_folder',checkSession, (req, res) => {
+    //res.redirect('./home.html')
+    //res.render('./home.html', {username: req.user.username})
+    res.render('create_folder.ejs', {username: req.user.username})
+})
 //login page
 app.get('/login', (req, res) => {
     res.render('login.ejs')
