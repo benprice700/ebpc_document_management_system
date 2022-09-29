@@ -1,9 +1,13 @@
+
 //import express
 const express = require('express')
 const cors = require('cors')
 //to create server
 const app = express()
 const path = require('path')
+//import fs
+const fs = require('fs')
+const handlebars = require('express-handlebars')
 // for hashing the password
 const bcrypt = require('bcrypt')
 // flash for getting the message from nodejs
@@ -37,13 +41,20 @@ passport.deserializeUser((username, done) => {
 
 // solve the cross domain issues
 app.use(cors())
-//set ejs and its folder
-app.set("views","public")
-app.set('view-engine', 'ejs')
+//set hbs and its folder
+app.set("views",path.join(__dirname, '/views'))
+app.set('view engine', 'hbs')
+
+console.log(__dirname)
+
+app.engine('hbs', handlebars.engine({
+    layoutsDir: __dirname + '/views/layouts',
+    extname: 'hbs'
+}))
 //encode form
 app.use(express.urlencoded({extended: false}))
 //set root folder
-app.use(express.static(path.join(__dirname, './public')))
+app.use(express.static('public'))
 app.use(flash())
 app.use(session({
     secret: 'secret',
@@ -52,27 +63,37 @@ app.use(session({
 }))
 app.use(passport.session())
 
-//middleware for checking if session exist
-function checkSession(req, res, next) {
-    if (!req.isAuthenticated()) {
-        return res.render('login.ejs')
-    }
-    return next()
-}
 
-//go to homepage if session exist
+const folderPath = "public/EBPC"
+var dirContents = fs.readdirSync(folderPath)
+
+let dirObj = [];
+
+dirContents.forEach((d) => {
+    dirObj.push({folderName: d});
+});
+
+//go to homepage if session exists
 app.get('/',checkSession, (req, res) => {
-    //res.redirect('./home.html')
-    //res.render('./home.html', {username: req.user.username})
-    res.render('home.ejs', {username: req.user.username})
+    res.render('home', {layout : 'index', folders: dirObj, userName: req.user.username})
+})
+//go to folder page if session exists
+app.get('/folder/:dir',checkSession, (req, res) => {
+    let f = fs.readdirSync(path.join(folderPath, req.params.dir));
+    let files = [];
+    f.forEach((fl) => {
+        files.push({filename: fl});
+    });
+    
+    res.render('folder', {layout : 'files', files: files, userName: req.user.username})
 })
 //login page
 app.get('/login', (req, res) => {
-    res.render('login.ejs')
+    res.render('login')
 })
 //register page
 app.get('/reg', (req, res) => {
-    res.render('register.ejs')
+    res.render('register')
 })
 //setting user info
 app.post('/reg', async (req, res) => {
@@ -93,10 +114,20 @@ app.post('/login', passport.authenticate('local', {
 }))
 //back to login page if click logout
 app.get('/logout', (req, res) => {
-    res.render('login.ejs')
+    res.render('login')
 })
+
+//middleware for checking if session exist
+function checkSession(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.render('login')
+    }
+    return next()
+}
 
 //start server
 app.listen(80, () => {
     console.log('server is running')
 })
+
+
