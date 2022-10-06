@@ -12,6 +12,8 @@ const session = require('express-session')
 //passport related
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+//uploading package
+var formidable = require('formidable');
 
 //to store the users
 const userData = []
