@@ -39,6 +39,8 @@ passport.deserializeUser((username, done) => {
     return done(null, findByUsername(username))
 })
 
+//Test commit and push
+
 // solve the cross domain issues
 app.use(cors())
 //set hbs and its folder
