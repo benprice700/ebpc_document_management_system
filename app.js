@@ -102,16 +102,18 @@ app.use(passport.session())
 
 
 const folderPath = "public/EBPC"
-var dirContents = fs.readdirSync(folderPath)
 
-let dirObj = [];
-
-dirContents.forEach((d) => {
-    dirObj.push({folderName: d});
-});
 
 //go to homepage if session exists
 app.get('/',checkSession, (req, res) => {
+    var dirContents = fs.readdirSync(folderPath)
+    let dirObj = [];
+    dirContents.forEach((d) => {
+        dirObj.push({folderName: d});
+    });
+    if (dirContents == null){
+        dirObj = null;
+    }
     res.render('home', {layout : 'index', folders: dirObj, userName: req.user.username})
 })
 //go to folder page if session exists
@@ -121,7 +123,9 @@ app.get('/folder/:dir',checkSession, (req, res) => {
     f.forEach((fl) => {
         files.push({filename: fl});
     });
-    
+    if (f == null){
+        files = null;
+    }
     res.render('folder', {layout : 'files', files: files, userName: req.user.username})
 })
 app.get('/create_folder',checkSession, (req, res) => {
