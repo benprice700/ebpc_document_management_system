@@ -138,7 +138,7 @@ app.get('/login', (req, res) => {
 })
 //register page
 app.get('/reg', (req, res) => {
-    res.render('register')
+    res.render('register', {messages: null})
 })
 //setting user info
 app.post('/reg', async (req, res) => {
