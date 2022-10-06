@@ -39,10 +39,10 @@ const db = new sqlite3.Database(path.join(__dirname, '/db/ebpc_document_manageme
 const queryUser = (username) => {
     return new Promise((resolve, reject) => {
         db.all('SELECT * FROM user WHERE name = ?', [username], function (err, rows) {
+            const userData = rows[0];
             if (err) {
                 reject(err);
             } else {
-                const userData = rows[0];
                 resolve({
                     ...userData,
                     username: userData.name
@@ -126,10 +126,22 @@ app.get('/folder/:dir',checkSession, (req, res) => {
     if (f == null){
         files = null;
     }
-    res.render('folder', {layout : 'files', files: files, userName: req.user.username})
+    res.render('folder', {layout : 'files', openedFolder: req.params.dir ,files: files, userName: req.user.username})
 })
 app.get('/create_folder',checkSession, (req, res) => {
     res.render('create_folder', {userName: req.user.username})
+})
+app.post('/create_folder',checkSession, (req, res) => {
+    //Create new directory with given filename
+    let folder_name = req.body.folder_name
+
+    fs.mkdir(path.join(__dirname, 'public', 'EBPC', folder_name ), (err) => {
+        if (err) {
+            return console.error(err);
+        }
+        console.log('Directory created successfully!');
+    });
+    res.redirect('/')
 })
 
 app.get('/upload',checkSession, (req, res) => {

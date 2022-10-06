@@ -29,20 +29,12 @@
 </div>
 <hr>
 <div class="container-fluid">
-  <button type="button" class="btn btn-primary" onclick=home()>
-    <img class="img-responsive" src="./img/back_arrow.png" alt="Back" ></button>
-
   <center>
-  <form>
-
+  <form action='/create_folder' method="post">
     <label for="folder_name">Enter Folder Name Here:</label><br>
     <input type="text" id="folder_name" name="folder_name" maxlength= "250" size= "50"><br><br>
-    <label for="folder_description">Please Enter a Folder Description Here:</label><br>
-    <input type="text" id="folder_description" name="folder_description" maxlength="180" size= "50"><br>
     <br>
-    <br>
-    <button type="button" class="btn btn-primary" onclick=makeDir()> Create Folder </button>
-
+    <button type="submit" class="btn btn-primary"> Create Folder </button>
   </form>
   </center>
 </div>
