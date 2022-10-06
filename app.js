@@ -92,15 +92,13 @@ app.get('/folder/:dir',checkSession, (req, res) => {
     res.render('folder', {layout : 'files', files: files, userName: req.user.username})
 })
 app.get('/create_folder',checkSession, (req, res) => {
-    //res.redirect('./home.html')
-    //res.render('./home.html', {username: req.user.username})
-    res.render('create_folder.ejs', {username: req.user.username})
+    res.render('create_folder', {userName: req.user.username})
 })
-app.get('/create_folder',checkSession, (req, res) => {
-    //res.redirect('./home.html')
-    //res.render('./home.html', {username: req.user.username})
-    res.render('create_folder.ejs', {username: req.user.username})
+
+app.get('/upload',checkSession, (req, res) => {
+    res.render('upload', {userName: req.user.username})
 })
+
 //login page
 app.get('/login', (req, res) => {
     res.render('login')
