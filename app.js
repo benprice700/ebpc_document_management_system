@@ -128,6 +128,21 @@ app.get('/folder/:dir',checkSession, (req, res) => {
     }
     res.render('folder', {layout : 'files', openedFolder: req.params.dir ,files: files, userName: req.user.username})
 })
+
+app.post('/folder/:dir', checkSession, (req, res) => {
+    //download chosen file
+    let filename = req.body.filename
+    let openedFolder = req.params.dir
+    console.log(filename)
+    console.log(openedFolder)
+    // fs.readFile(path.join(__dirname,'public','EBPC', openedFolder, filename), (err, data) =>{
+    //     if(err) throw err
+    //     console.log(data)
+    // })
+
+    res.redirect('/folder/' + openedFolder)
+})
+
 app.get('/create_folder',checkSession, (req, res) => {
     res.render('create_folder', {userName: req.user.username})
 })

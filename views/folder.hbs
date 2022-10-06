@@ -1,7 +1,9 @@
 {{#each files}}
-<div id="file-container" class="col">
-    <img src="/img/file.png" width="200px">
-    <br>
-    <p>{{this.filename}}</p>
-</div>
+<form action="/folder/{{../openedFolder}}" method="post">
+    <button id="file-container" class="col" type="submit">
+        <img src="/img/file.png" width="200px">
+        <br>
+        <p name="filename" id="filename">{{this.filename}}</p>
+    </button>
+</form>
 {{/each}}
